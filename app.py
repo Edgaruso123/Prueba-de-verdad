@@ -47,19 +47,12 @@ def EncontrarMiembro(s):
 
 # Separar las partes de cada línea del txt: Fecha, Hora, Miembro y Mensaje
 def ObtenerPartes(linea):
-    # Ejemplo: '9/16/23, 5:59 PM - Sandreke: Todos debemos aprender a analizar datos'
-    splitLinea = linea.split(' - ')
-    FechaHora = splitLinea[0]                     # '9/16/23, 5:59 PM'
-    splitFechaHora = FechaHora.split(', ')
-    Fecha = '/'.join(splitFechaHora[:3])                    # '9/16/23'
-    Hora = ' '.join(splitFechaHora[3:6])          # '5:59 PM'
-    Mensaje = ' '.join(splitLinea[1:])             # 'Sandreke: Todos debemos aprender a analizar datos'
-    if EncontrarMiembro(Mensaje):
-        splitMensaje = Mensaje.split(': ')
-        Miembro = splitMensaje[0]               # 'Sandreke'
-        Mensaje = ' '.join(splitMensaje[1:])    # 'Todos debemos aprender a analizar datos'
-    else:
-        Miembro = None       
+    # Ejemplo: '10/9/23, 3:19:01 AM  Edgar: Perdí toda las conversaciones :('
+    splitLinea = re.split(r', |:|\u2009', linea)  # utilizar expresiones regulares para dividir la línea
+    Fecha = '/'.join(splitLinea[:3])             # '10/9/23'
+    Hora = ':'.join(splitLinea[3:6])             # '3:19:01 AM'
+    Miembro = splitLinea[6]                       # 'Edgar'
+    Mensaje = ' '.join(splitLinea[7:])            # 'Perdí toda las conversaciones :('
     return Fecha, Hora, Miembro, Mensaje
 
 
