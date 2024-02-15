@@ -383,7 +383,7 @@ st.plotly_chart(fig)
 df['# Mensajes por día'] = 1
 
 # Sumar (contar) los mensajes que tengan la misma fecha
-date_df = df.groupby('Fecha').sum().reset_index()
+date_df = df.groupby('Fecha')['Mensaje'].count().reset_index()
 
 # Plotear la cantidad de mensajes respecto del tiempo
 fig = px.line(date_df, x='Fecha', y='# Mensajes por día', color_discrete_sequence=['salmon'], template='plotly_dark')
