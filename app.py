@@ -388,6 +388,7 @@ date_df = df.groupby('Fecha')['Mensaje'].count().reset_index()
 # Plotear la cantidad de mensajes respecto del tiempo
 fig = px.line(date_df, x='Fecha', y='# Mensajes por día', color_discrete_sequence=['salmon'], template='plotly_dark')
 
+
 # Ajustar el gráfico
 # fig.update_layout(
 #     title={'text': 'Mensajes con ella ❤️',
