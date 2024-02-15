@@ -322,11 +322,16 @@ df['DiaSemana'] = df['DiaSemana'].map(mapeo_dias_espanol)
 # Crear una columna de 1 para realizar el conteo de mensajes
 df['# Mensajes por hora'] = 1
 
+# Cambiar el formato de la hora a 24 horas para facilitar la clasificación
+df['rangoHora'] = pd.to_datetime(df['Hora'], format='%I:%M %p').dt.strftime('%H:00-%H:59')
+
 # Sumar (contar) los mensajes que tengan la misma fecha
-date_df = df.groupby('rangoHora').count().reset_index()
+hour_df = df.groupby('rangoHora').count().reset_index()
+
 
 # Plotear la cantidad de mensajes respecto del tiempo
-fig = px.line(date_df, x='rangoHora', y='# Mensajes por hora', color_discrete_sequence=['salmon'], template='plotly_dark')
+fig = px.line(hour_df, x='rangoHora', y='# Mensajes por hora', color_discrete_sequence=['salmon'], template='plotly_dark')
+
 
 # Ajustar el gráfico
 # fig.update_layout(
