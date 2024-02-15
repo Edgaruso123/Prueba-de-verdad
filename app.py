@@ -1,18 +1,13 @@
 import pandas as pd
 import re
-
 import regex
 import demoji
-
 import numpy as np
 from collections import Counter
-
 import plotly.express as px
-import matplotlib.pyplot as plt
+import streamlit as st
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS
-
-import streamlit as st
 
 ###################################
 ###################################
